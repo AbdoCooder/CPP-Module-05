@@ -2,6 +2,7 @@
 
 #include "Bureaucrat.hpp"
 
+#include <exception>
 #include <iostream>
 
 Bureaucrat::Bureaucrat(const std::string &name, const int &grade) : name(name) {
@@ -55,7 +56,6 @@ std::ostream &operator<<(std::ostream &out, const Bureaucrat &b) {
   return out;
 }
 
-// In C++98, an empty throw() means: "I promise this function will not throw any exceptions."
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
   return "Bureaucrat grade is too high.";
 }
@@ -63,3 +63,13 @@ const char *Bureaucrat::GradeTooHighException::what() const throw() {
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
   return "Bureaucrat grade is too low.";
 }
+
+void Bureaucrat::signForm(Form &f) {
+  try {
+    f.beSigned(*this);
+    std::cout << this->getName() << " signed " << f.getName() << std::endl;
+  } catch (std::exception &e) {
+    std::cout << this->getName() << " couldn't sign " << f.getName() <<" because " << e.what() << "." << std::endl;
+  }
+}
+
