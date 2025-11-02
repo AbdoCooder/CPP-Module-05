@@ -5,6 +5,10 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 
+Form::Form() : name("Form"), isSigned(false), gradeToSign(150), gradeToExec(150) {
+  std::cout << "Form constructed" << std::endl;
+}
+
 Form::Form(const std::string &name, const int &gradeToSign, const int &gradeToExec) : name(name), gradeToSign(gradeToSign), gradeToExec(gradeToExec) {
   if (gradeToSign < 1 || gradeToExec < 1) {
     throw Form::GradeTooHighException();

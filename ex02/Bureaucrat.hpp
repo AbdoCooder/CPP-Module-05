@@ -7,7 +7,7 @@
 #include <ostream>
 #include <string>
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 class Bureaucrat {
  public:
@@ -24,7 +24,9 @@ class Bureaucrat {
   void decrementGrade(void);  // grade++
 
 
-  void signForm(Form &f);
+  void signForm(AForm &f);
+
+  void executeForm(AForm const & form) const;
 
   // Exeptions
   class GradeTooHighException : public std::exception {

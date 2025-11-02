@@ -4,6 +4,10 @@
 
 #include <iostream>
 
+Bureaucrat::Bureaucrat() : name("Anonnymous"), grade(1) {
+  std::cout << "Bureaucrat constructed" << std::endl;
+}
+
 Bureaucrat::Bureaucrat(const std::string &name, const int &grade) : name(name) {
   if (grade < 1) {
     throw Bureaucrat::GradeTooHighException();
